@@ -1,0 +1,9 @@
+{
+  "name": "My Life OS 个人生活与成长系统",
+  "short_name": "My Life OS",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f4ef",
+  "theme_color": "#f6f4ef",
+  "description": "个人日历、生活记录、任务管理与学习进度"
+}

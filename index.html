@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f6f4ef"><meta name="description" content="个人生活、学习与成长管理平台">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+<title>My Life OS · 我的生活工作台</title>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">✳</div><div><b>My Life OS</b><small>个人生活与成长系统</small></div></div>
+    <nav id="nav">
+      <button class="nav-item active" data-view="home"><span>⌂</span>今日工作台</button>
+      <button class="nav-item" data-view="calendar"><span>▦</span>日历与记录</button>
+      <button class="nav-item" data-view="tasks"><span>☑</span>任务管理</button>
+      <button class="nav-item" data-view="courses"><span>▤</span>课程表</button>
+      <button class="nav-item" data-view="goals"><span>↗</span>学习目标</button>
+      <button class="nav-item" data-view="settings"><span>⚙</span>设置与备份</button>
+    </nav>
+    <div class="sidebar-bottom"><div class="quote-mark">“</div><p>把日子过清楚，也把故事留下来。</p><small>一步一步来就很好。</small></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow" id="today-label">PERSONAL DASHBOARD</div><h1 id="page-title">今天，慢慢来。</h1></div><div class="top-actions"><button class="icon-btn" id="notify-btn" title="启用通知">♧</button><button class="primary-btn" id="quick-add">＋ 新建</button></div></header>
+    <section id="view-home" class="view active">
+      <div class="welcome-card"><div><span class="pill pale">TODAY · <span id="date-pill"></span></span><h2>先做重要的事，<br>也别忘了记录生活。</h2><p>让计划为你服务，而不是让计划追着你跑。</p></div><div class="welcome-art"><div class="sun"></div><div class="hill h1"></div><div class="hill h2"></div><div class="hill h3"></div></div></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-label">今日待办</div><div class="stat-num" id="stat-tasks">0</div><div class="stat-foot">还需要推进的事情</div></article>
+        <article class="stat-card"><div class="stat-label">今日课程</div><div class="stat-num" id="stat-courses">0</div><div class="stat-foot">按课表自动整理</div></article>
+        <article class="stat-card"><div class="stat-label">近期截止</div><div class="stat-num" id="stat-due">0</div><div class="stat-foot">未来 3 天内</div></article>
+        <article class="stat-card"><div class="stat-label">学习目标</div><div class="stat-num" id="stat-goals">0</div><div class="stat-foot">正在积累的方向</div></article>
+      </div>
+      <div class="content-grid">
+        <section class="panel"><div class="panel-head"><div><div class="eyebrow">YOUR PRIORITIES</div><h3>今天优先做什么</h3></div><button class="text-btn" data-goto="tasks">全部任务 →</button></div><div id="priority-list" class="item-list empty-state">还没有任务。先添加一件最想推进的事吧。</div></section>
+        <section class="panel"><div class="panel-head"><div><div class="eyebrow">DAILY RHYTHM</div><h3>今日课程</h3></div><button class="text-btn" data-goto="courses">查看课表 →</button></div><div id="today-courses" class="item-list empty-state">添加课程后，这里会自动显示今天的安排。</div></section>
+      </div>
+      <section class="panel recent-panel"><div class="panel-head"><div><div class="eyebrow">LIFE ARCHIVE</div><h3>最近的生活记录</h3></div><button class="text-btn" data-goto="calendar">进入时间轴 →</button></div><div id="recent-records" class="record-strip empty-state">把重要的瞬间留下来，它们以后会成为故事。</div></section>
+    </section>
+
+    <section id="view-calendar" class="view">
+      <div class="section-intro"><div><div class="eyebrow">CALENDAR & JOURNAL</div><h2>日历与生活记录</h2><p>点选某一天，记录发生的事情、照片与视频。</p></div><button class="primary-btn" id="add-record">＋ 记录事件</button></div>
+      <div class="calendar-layout"><section class="panel calendar-panel"><div class="calendar-header"><button class="icon-btn" id="prev-month">‹</button><h3 id="month-title"></h3><button class="icon-btn" id="next-month">›</button><button class="text-btn" id="go-today">今天</button></div><div class="calendar-grid weekday"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar-grid" id="calendar-grid"></div></section>
+      <section class="panel day-panel"><div class="panel-head"><div><div class="eyebrow">DAY DETAILS</div><h3 id="selected-day-title">选择日期</h3></div><button class="text-btn" id="add-day-record">＋ 添加</button></div><div id="day-events" class="item-list empty-state">选择日历中的日期，查看当天记录。</div></section></div>
+      <section class="panel"><div class="panel-head"><div><div class="eyebrow">TIMELINE</div><h3>最近事件</h3></div><input id="record-search" class="search-input" placeholder="搜索事件、标签…"></div><div id="timeline" class="timeline empty-state">你的生活记录会出现在这里。</div></section>
+    </section>
+
+    <section id="view-tasks" class="view">
+      <div class="section-intro"><div><div class="eyebrow">TASKS & PRIORITIES</div><h2>任务管理</h2><p>综合重要程度、截止时间和紧迫程度排序；优先级可以随时手动调整。</p></div><button class="primary-btn" id="add-task">＋ 新建任务</button></div>
+      <div class="filter-row"><button class="filter-chip selected" data-filter="all">全部</button><button class="filter-chip" data-filter="urgent">最紧急</button><button class="filter-chip" data-filter="important">重要但不紧急</button><button class="filter-chip" data-filter="normal">一般</button><button class="filter-chip" data-filter="done">已完成</button></div>
+      <div id="tasks-list" class="task-grid empty-state">还没有任务，点击右上角添加第一项。</div>
+    </section>
+
+    <section id="view-courses" class="view">
+      <div class="section-intro"><div><div class="eyebrow">WEEKLY TIMETABLE</div><h2>我的课程表</h2><p>按星期查看课程；可添加课程名称、节次、地点和单双周信息。</p></div><button class="primary-btn" id="add-course">＋ 添加课程</button></div>
+      <div class="week-tabs" id="week-tabs"></div><section class="panel"><div id="course-list" class="course-list empty-state">还没有课程。添加后会在今日工作台和周课表中显示。</div></section>
+    </section>
+
+    <section id="view-goals" class="view">
+      <div class="section-intro"><div><div class="eyebrow">LONG-TERM GROWTH</div><h2>学习目标</h2><p>把想做的事情拆成可推进的小步骤，不必一次完成全部。</p></div><button class="primary-btn" id="add-goal">＋ 新建目标</button></div>
+      <div id="goals-list" class="goal-grid empty-state">例如：巩固 C 语言、入门 Python、完成一个电子项目。</div>
+    </section>
+
+    <section id="view-settings" class="view">
+      <div class="section-intro"><div><div class="eyebrow">PREFERENCES & DATA</div><h2>设置与备份</h2><p>数据默认保存在当前浏览器设备中。请定期导出备份。</p></div></div>
+      <div class="settings-grid">
+        <section class="panel"><div class="eyebrow">DAILY REMINDERS</div><h3>每日提醒</h3><p class="muted">提醒需要浏览器通知权限。当前版本在平台打开时检查计划提醒；浏览器关闭时的可靠定时推送需要后续部署推送服务。</p><label class="setting-row"><span>启用早间提醒</span><input type="checkbox" id="morning-enabled" checked></label><label class="setting-row"><span>早间时间</span><input type="time" id="morning-time" value="08:00"></label><label class="setting-row"><span>启用晚间回顾</span><input type="checkbox" id="evening-enabled" checked></label><label class="setting-row"><span>晚间时间</span><input type="time" id="evening-time" value="21:30"></label><button class="primary-btn" id="save-reminders">保存提醒设置</button><p id="notify-status" class="small-note">尚未请求通知权限。</p></section>
+        <section class="panel"><div class="eyebrow">BACKUP & RESTORE</div><h3>数据备份</h3><p class="muted">导出 JSON 文件可以备份事件、任务、课程和目标。媒体文件目前不包含在 JSON 备份中，请另行保存原图与视频。</p><div class="button-stack"><button class="secondary-btn" id="export-data">导出数据备份</button><label class="secondary-btn file-label">导入备份<input type="file" id="import-data" accept=".json,application/json"></label><button class="danger-btn" id="clear-data">清空本机数据</button></div><p class="small-note">建议每周备份一次，并将文件保存到安全位置。</p></section>
+      </div>
+      <section class="panel about-panel"><div class="eyebrow">ABOUT THIS VERSION</div><h3>My Life OS · 第一版</h3><p>包含日历、事件记录、任务优先级、课程表、学习目标和数据备份。所有数据目前保存在本机浏览器，不会自动同步到另一台设备。</p><p><b>跨设备同步与关闭应用后的可靠推送</b>需要后续配置云端数据库、账号和推送服务；本版本不假装这些能力已经实现。</p></section>
+    </section>
+    <footer>MY LIFE OS <span>·</span> 让计划更清楚，让生活有迹可循。</footer>
+  </main>
+</div>
+
+<dialog id="modal"><form method="dialog" id="modal-form"><div class="modal-head"><h3 id="modal-title">新建</h3><button class="icon-btn" value="cancel" aria-label="关闭">×</button></div><div id="modal-fields" class="modal-fields"></div><div class="modal-actions"><button class="secondary-btn" value="cancel">取消</button><button class="primary-btn" id="modal-save" value="save">保存</button></div></form></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body></html>
