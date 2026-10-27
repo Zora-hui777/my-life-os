@@ -17,7 +17,8 @@
       <button class="nav-item" data-view="tasks"><span>☑</span>任务管理</button>
       <button class="nav-item" data-view="courses"><span>▤</span>课程表</button>
       <button class="nav-item" data-view="goals"><span>↗</span>学习目标</button>
-      <button class="nav-item" data-view="settings"><span>⚙</span>设置与备份</button>
+      <button class="nav-item" data-view="portfolio"><span>🏅</span>成长档案与综测</button>
+       <button class="nav-item" data-view="settings"><span>⚙</span>设置与备份</button>
     </nav>
     <div class="sidebar-bottom"><div class="quote-mark">“</div><p>把日子过清楚，也把故事留下来。</p><small>一步一步来就很好。</small></div>
   </aside>
@@ -61,7 +62,15 @@
       <div id="goals-list" class="goal-grid empty-state">例如：巩固 C 语言、入门 Python、完成一个电子项目。</div>
     </section>
 
-    <section id="view-settings" class="view">
+    <section id="view-portfolio" class="view">
+<div class="section-intro"><div><div class="eyebrow">GROWTH & SCHOLARSHIPS</div><h2>成长档案 · 综测与奖学金</h2><p>记录经历、核对综测细则、规划奖学金。所有计算结果仅供个人预估。</p></div><button class="primary-btn" id="pf-add">＋ 新增经历</button></div>
+<div class="stats-grid"><article class="stat-card"><div class="stat-label">成长经历</div><div class="stat-num" id="pf-count">0</div></article><article class="stat-card"><div class="stat-label">志愿服务小时</div><div class="stat-num" id="pf-hours">0</div></article><article class="stat-card"><div class="stat-label">预计综测加分</div><div class="stat-num" id="pf-points">0</div></article><article class="stat-card"><div class="stat-label">待核实项目</div><div class="stat-num" id="pf-pending">0</div></article></div>
+<section class="panel"><div class="panel-head"><div><div class="eyebrow">EXPERIENCE ARCHIVE</div><h3>活动与荣誉档案</h3></div><button class="secondary-btn" id="pf-export">导出 CSV 汇总</button></div><div id="pf-list" class="item-list empty-state">暂无经历记录。</div></section>
+<div class="content-grid"><section class="panel"><div class="eyebrow">SCORING RULES</div><h3>综测加分规则</h3><p class="muted">支持导入 CSV 规则表（UTF-8），列名：类别,项目,分值,上限,说明。Excel 可另存为 CSV。导入后先核对每条规则，系统不会自行推断学校的复杂认定条件。</p><div class="button-stack"><label class="secondary-btn file-label">导入规则 CSV<input type="file" id="pf-rules-file" accept=".csv,text/csv"></label><button class="secondary-btn" id="pf-rule-add">手动添加规则</button><button class="secondary-btn" id="pf-rule-template">下载 CSV 模板</button></div><div id="pf-rules" class="item-list" style="margin-top:15px"></div></section>
+<section class="panel"><div class="eyebrow">SCHOLARSHIP PLANNER</div><h3>奖学金资格检查</h3><p class="muted">填写学年、成绩与排名后，对照正式评审文件人工核对。以下只是规划提醒，不代表学校审核结论。</p><div class="pf-fields"><label>当前年级<select id="pf-grade"><option value="1">大一</option><option value="2">大二</option><option value="3">大三</option><option value="4">大四</option></select></label><label>学业排名百分位（如 8 表示前 8%）<input id="pf-academic" type="number" min="0" max="100" placeholder="尚未公布"></label><label>综测排名百分位<input id="pf-rank" type="number" min="0" max="100" placeholder="尚未公布"></label></div><button class="primary-btn" id="pf-check">查看规划建议</button><div id="pf-awards" class="pf-awards"></div></section></div>
+<section class="panel"><div class="eyebrow">DATA SAFETY</div><h3>数据与材料说明</h3><p class="muted">经历和规则保存在当前浏览器的 My Life OS 数据中；请在「设置与备份」定期导出 JSON。证书建议保存在自己的私有文件夹，档案里记录文件名或私有链接，不要上传到公开 GitHub 仓库。不同设备目前不会自动同步。</p></section>
+</section>
+<section id="view-settings" class="view">
       <div class="section-intro"><div><div class="eyebrow">PREFERENCES & DATA</div><h2>设置与备份</h2><p>数据默认保存在当前浏览器设备中。请定期导出备份。</p></div></div>
       <div class="settings-grid">
         <section class="panel"><div class="eyebrow">DAILY REMINDERS</div><h3>每日提醒</h3><p class="muted">提醒需要浏览器通知权限。当前版本在平台打开时检查计划提醒；浏览器关闭时的可靠定时推送需要后续部署推送服务。</p><label class="setting-row"><span>启用早间提醒</span><input type="checkbox" id="morning-enabled" checked></label><label class="setting-row"><span>早间时间</span><input type="time" id="morning-time" value="08:00"></label><label class="setting-row"><span>启用晚间回顾</span><input type="checkbox" id="evening-enabled" checked></label><label class="setting-row"><span>晚间时间</span><input type="time" id="evening-time" value="21:30"></label><button class="primary-btn" id="save-reminders">保存提醒设置</button><p id="notify-status" class="small-note">尚未请求通知权限。</p></section>
@@ -76,4 +85,5 @@
 <dialog id="modal"><form method="dialog" id="modal-form"><div class="modal-head"><h3 id="modal-title">新建</h3><button class="icon-btn" value="cancel" aria-label="关闭">×</button></div><div id="modal-fields" class="modal-fields"></div><div class="modal-actions"><button class="secondary-btn" value="cancel">取消</button><button class="primary-btn" id="modal-save" value="save">保存</button></div></form></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="app.js"></script>
+<script src="portfolio.js"></script>
 </body></html>
