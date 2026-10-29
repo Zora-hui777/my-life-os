@@ -17,7 +17,8 @@
       <button class="nav-item" data-view="tasks"><span>☑</span>任务管理</button>
       <button class="nav-item" data-view="courses"><span>▤</span>课程表</button>
       <button class="nav-item" data-view="goals"><span>↗</span>学习目标</button>
-      <button class="nav-item" data-view="portfolio"><span>🏅</span>成长档案与综测</button>
+      <button class="nav-item" data-view="mentor"><span>✦</span>AI 学习工作台</button>
+       <button class="nav-item" data-view="portfolio"><span>🏅</span>成长档案与综测</button>
        <button class="nav-item" data-view="settings"><span>⚙</span>设置与备份</button>
     </nav>
     <div class="sidebar-bottom"><div class="quote-mark">“</div><p>把日子过清楚，也把故事留下来。</p><small>一步一步来就很好。</small></div>
@@ -70,6 +71,17 @@
 <section class="panel"><div class="eyebrow">SCHOLARSHIP PLANNER</div><h3>奖学金资格检查</h3><p class="muted">填写学年、成绩与排名后，对照正式评审文件人工核对。以下只是规划提醒，不代表学校审核结论。</p><div class="pf-fields"><label>当前年级<select id="pf-grade"><option value="1">大一</option><option value="2">大二</option><option value="3">大三</option><option value="4">大四</option></select></label><label>学业排名百分位（如 8 表示前 8%）<input id="pf-academic" type="number" min="0" max="100" placeholder="尚未公布"></label><label>综测排名百分位<input id="pf-rank" type="number" min="0" max="100" placeholder="尚未公布"></label></div><button class="primary-btn" id="pf-check">查看规划建议</button><div id="pf-awards" class="pf-awards"></div></section></div>
 <section class="panel"><div class="eyebrow">DATA SAFETY</div><h3>数据与材料说明</h3><p class="muted">经历和规则保存在当前浏览器的 My Life OS 数据中；请在「设置与备份」定期导出 JSON。证书建议保存在自己的私有文件夹，档案里记录文件名或私有链接，不要上传到公开 GitHub 仓库。不同设备目前不会自动同步。</p></section>
 </section>
+
+<section id="view-mentor" class="view">
+  <div class="section-intro"><div><div class="eyebrow">LEARNING STUDIO · VERSION 3 PREVIEW</div><h2>我的学习工作台</h2><p>从头重学高数、线代；把问题、课程资源、复习和绩点放在一起。</p></div></div>
+  <div class="ml-banner"><strong>学习工具已可离线使用</strong><span>知识卡、练习记录、课程链接、任务拆解、暂停接力和成绩规划均可保存。真正的 AI 对话与云同步尚未连接，当前不会假装自动生成 AI 答案。</span></div>
+  <div class="ml-tabs"><button class="ml-tab selected" data-ml-tab="capture">大脑卸载箱</button><button class="ml-tab" data-ml-tab="study">重学与认知书签</button><button class="ml-tab" data-ml-tab="resources">课程资源库</button><button class="ml-tab" data-ml-tab="grades">绩点规划</button><button class="ml-tab" data-ml-tab="relay">任务接力</button></div>
+  <div class="ml-pane active" id="ml-capture"><div class="panel"><h3>想到什么，先放在这里</h3><p class="muted">一句话就能记录。你可以把它变成任务，或留待以后整理。</p><textarea id="ml-capture-text" class="ml-textarea" placeholder="例如：下周复习高数极限；想到一个机器人项目；线代矩阵秩没听懂……"></textarea><div class="ml-actions"><button class="primary-btn" id="ml-capture-save">保存想法</button><button class="secondary-btn" id="ml-capture-task">保存并创建任务</button></div></div><div class="panel"><h3>最近捕捉的想法</h3><div id="ml-inbox-list"></div></div></div>
+  <div class="ml-pane" id="ml-study"><div class="panel"><h3>知识点 · 从头重学</h3><p class="muted">按课程、章节记录薄弱点；每学完一个知识点，写下你是否能独立做题。</p><div class="ml-form"><label>课程<select id="ml-topic-course"><option>高等数学</option><option>线性代数</option><option>C语言</option><option>专业课</option><option>其他</option></select></label><label>章节 / 知识点<input id="ml-topic-name" placeholder="例如：第一章 · 极限的定义"></label><label>掌握程度<select id="ml-topic-level"><option value="new">还没学懂</option><option value="learning">正在理解</option><option value="practice">需要练习迁移</option><option value="mastered">可以独立完成</option></select></label><label class="ml-wide">疑问或学习笔记<textarea id="ml-topic-note" placeholder="为什么？我在哪一步卡住？"></textarea></label></div><div class="ml-actions"><button class="primary-btn" id="ml-topic-save">保存知识点</button><button class="secondary-btn" id="ml-topic-review">安排明日复习任务</button></div></div><div class="panel"><h3>我的知识地图</h3><div id="ml-topic-list"></div></div></div>
+  <div class="ml-pane" id="ml-resources"><div class="panel"><h3>收藏课程视频 / 讲义</h3><p class="muted">保存 B 站、YouTube 或其他 HTTPS 课程链接；能否站内播放取决于平台权限，默认安全地在新标签页打开。</p><div class="ml-form"><label>课程<select id="ml-resource-course"><option>高等数学</option><option>线性代数</option><option>C语言</option><option>专业课</option><option>其他</option></select></label><label>资源名称<input id="ml-resource-name" placeholder="例如：极限基础讲解"></label><label class="ml-wide">网址<input id="ml-resource-url" type="url" placeholder="https://..."></label></div><button class="primary-btn" id="ml-resource-save">保存资源</button></div><div class="panel"><h3>我的学习资料</h3><div id="ml-resource-list"></div></div></div>
+  <div class="ml-pane" id="ml-grades"><div class="panel"><h3>成绩与学分规划</h3><p class="muted">输入课程学分与成绩。默认使用常见的 4.0 分段映射做<strong>示例估算</strong>；各学校绩点换算、保研排名及国外申请计算方式不同，请以学校官方规定为准。</p><div class="ml-form"><label>课程名称<input id="ml-grade-name" placeholder="高等数学"></label><label>学分<input id="ml-grade-credit" type="number" min="0.5" max="30" step="0.5" placeholder="4"></label><label>分数（0–100）<input id="ml-grade-score" type="number" min="0" max="100" placeholder="92"></label><label>目标分数<input id="ml-grade-target" type="number" min="0" max="100" placeholder="95"></label></div><button class="primary-btn" id="ml-grade-save">添加课程成绩</button></div><div class="panel"><h3>成绩概览</h3><div id="ml-grade-summary" class="ml-summary"></div><div id="ml-grade-list"></div></div></div>
+  <div class="ml-pane" id="ml-relay"><div class="panel"><h3>暂停时，把思路留给未来的自己</h3><p class="muted">保存当前正在做什么、卡在哪里、回来后的第一步。不会自动监听你的工作。</p><div class="ml-form"><label class="ml-wide">正在做什么<input id="ml-relay-title" placeholder="例如：线代第二章习题"></label><label class="ml-wide">目前进度 / 卡点<textarea id="ml-relay-context" placeholder="已经做到哪里？有什么问题？"></textarea></label><label class="ml-wide">回来后最小的一步<input id="ml-relay-next" placeholder="例如：打开第 23 页，先看例题 2"></label></div><div class="ml-actions"><button class="primary-btn" id="ml-relay-save">保存暂停点</button><button class="secondary-btn" id="ml-relay-task">创建继续任务</button></div></div><div class="panel"><h3>上次停在这里</h3><div id="ml-relay-list"></div></div></div>
+</section>
 <section id="view-settings" class="view">
       <div class="section-intro"><div><div class="eyebrow">PREFERENCES & DATA</div><h2>设置与备份</h2><p>数据默认保存在当前浏览器设备中。请定期导出备份。</p></div></div>
       <div class="settings-grid">
@@ -86,4 +98,5 @@
 <div id="toast" role="status" aria-live="polite"></div>
 <script src="app.js"></script>
 <script src="portfolio.js"></script>
+<script src="mentor.js"></script>
 </body></html>
